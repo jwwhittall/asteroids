@@ -9,7 +9,7 @@ public class player : MonoBehaviour
     private Rigidbody2D _rigidbody;
     public bool _thrusting;
 
-    public float thrustSpeed = 1.0f;
+    public float thrustSpeed = 2.0f;
     public float turnSpeed = 1.0f;
 
     private float _turnDirection;
@@ -25,12 +25,28 @@ public class player : MonoBehaviour
 
         if (Input.GetKey(KeyCode.A))
         {
-            _turnDirection = 1.0f;
+            transform.Translate(Vector3.left * Time.deltaTime * thrustSpeed, Space.World);
+            //_turnDirection = 1.0f;
         }
         else if (Input.GetKey(KeyCode.D))
         {
-            _turnDirection = -1.0f;
+            transform.Translate(Vector3.right * Time.deltaTime * thrustSpeed, Space.World);
+            //_turnDirection = -1.0f;
         }
+        if (Input.GetKey(KeyCode.S))
+        {
+            transform.Translate(Vector3.down * Time.deltaTime * thrustSpeed, Space.World);
+        }
+
+        if (Input.GetKey(KeyCode.LeftArrow))
+        {
+            transform.Rotate(0.0f, 0.0f, turnSpeed, Space.World);
+        }
+        else if (Input.GetKey(KeyCode.RightArrow))
+        {
+            transform.Rotate(0.0f, 0.0f, -turnSpeed, Space.World);
+        }
+
         if (Input.GetKeyDown(KeyCode.Space))
         {
             Shoot();
@@ -40,17 +56,20 @@ public class player : MonoBehaviour
 
     private void FixedUpdate()
     {
+    
         if (_thrusting)
         {
-            _rigidbody.AddForce(this.transform.up * this.thrustSpeed);
+            transform.Translate(Vector3.up * Time.deltaTime * thrustSpeed, Space.World);
+            // _rigidbody.AddForce(this.transform.up * this.thrustSpeed);
         }
-
+       
+        /*
 
         if (_turnDirection != 0.0f)
         {
             _rigidbody.AddTorque(_turnDirection * this.turnSpeed);
         }
-
+        */
 
     }
     private void Shoot()
