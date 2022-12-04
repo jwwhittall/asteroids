@@ -4,7 +4,7 @@ public class bullet : MonoBehaviour
 {
     private Rigidbody2D _rigidbody;
 
-    public float maxLifetime = 10.0f;
+    public float maxLifetime = 5.0f;
 
     public float speed = 500.0f;
 
@@ -22,7 +22,10 @@ public class bullet : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        Destroy(this.gameObject);
+        if (collision.gameObject.tag == "Asteroid" || collision.gameObject.tag == "boundary")
+        {
+            Destroy(this.gameObject);
+        }
     }
 }
 

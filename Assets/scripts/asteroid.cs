@@ -8,6 +8,7 @@ public class asteroid : MonoBehaviour
     public float maxSize = 1.5f;
     public float speed = 50.0f;
     public float maxLifetime = 30.0f;
+    public GameManager gameManager;
 
     private SpriteRenderer _spriteRenderer;
 
@@ -17,6 +18,16 @@ public class asteroid : MonoBehaviour
     {
         _spriteRenderer = GetComponent<SpriteRenderer>();
         _rigidbody = GetComponent<Rigidbody2D>();
+    }
+
+    void Update()
+    {
+        if (this.speed == 2.5f)
+        {
+            Debug.Log("2.5");
+        }
+        Debug.Log("aseroid speed " + this.speed);
+        this.speed = gameManager.speed;
     }
 
 

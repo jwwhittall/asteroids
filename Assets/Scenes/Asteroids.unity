@@ -181,7 +181,9 @@ MonoBehaviour:
   restartButton: {fileID: 680119955}
   lives: 3
   respawnTime: 3
+  speed: 5
   respawnInvulnerabilityTime: 3
+  shieldTime: 5
   score: 0
 --- !u!114 &98465909
 MonoBehaviour:
@@ -237,7 +239,7 @@ GameObject:
   - component: {fileID: 342661144}
   m_Layer: 8
   m_Name: Boundary (3)
-  m_TagString: Untagged
+  m_TagString: boundary
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -283,6 +285,59 @@ Transform:
   m_Father: {fileID: 1536216230}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &445468496
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 445468497}
+  - component: {fileID: 445468498}
+  m_Layer: 0
+  m_Name: powerup spawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &445468497
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 445468496}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 10
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &445468498
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 445468496}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f5493663754bd744cb9ad9d158064264, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shieldPrefab: {fileID: 5930412932296972457, guid: 6136cb4a49987db4a9d0e39dad86bdcc, type: 3}
+  nukePrefab: {fileID: 4432355665146977916, guid: cd01a7f6b135ffd439462c94d043dd6c, type: 3}
+  trajectoryVariance: 15
+  spawnRate: 12
+  spawnAmount: 1
+  spawnDistance: 15
+  gameManager: {fileID: 98465908}
+  nuke: {fileID: 1177517682}
+  type: 0
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -552,7 +607,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 92a388ac480150e4280ac5356b7d2a62, type: 3}
+  m_Sprite: {fileID: 21300000, guid: e93c81c8d4683b94f9c7829997ccf43b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -571,8 +626,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 827204470}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.5418, y: -0.7404, z: 0}
-  m_LocalScale: {x: 2.4777102, y: 2.0795434, z: 1}
+  m_LocalPosition: {x: -0.0044, y: 0.0792, z: 0}
+  m_LocalScale: {x: 1.1538087, y: 1.1730727, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -590,7 +645,7 @@ GameObject:
   - component: {fileID: 881228327}
   m_Layer: 8
   m_Name: Boundary (1)
-  m_TagString: Untagged
+  m_TagString: boundary
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5786,7 +5841,7 @@ GameObject:
   - component: {fileID: 1147516241}
   m_Layer: 3
   m_Name: player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5806,7 +5861,7 @@ MonoBehaviour:
   bulletPrefab: {fileID: -4435629620802128318, guid: 72de9dff0ee829544b0f27fbf9c46951, type: 3}
   _thrusting: 0
   thrustSpeed: 3
-  turnSpeed: 3
+  turnSpeed: 1
 --- !u!61 &1147516237
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -6039,6 +6094,78 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1157581712}
   m_CullTransparentMesh: 1
+--- !u!1 &1177517681
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1177517684}
+  - component: {fileID: 1177517683}
+  - component: {fileID: 1177517682}
+  m_Layer: 10
+  m_Name: nuke collider
+  m_TagString: Bullet
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1177517682
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1177517681}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb84c1be2a7af434d9321af5fc759426, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nCollider: {fileID: 1177517683}
+--- !u!61 &1177517683
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1177517681}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.02360487, y: -0.12562943}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 19.170895, y: 11.037712}
+  m_EdgeRadius: 0
+--- !u!4 &1177517684
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1177517681}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 11
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1325837488
 GameObject:
   m_ObjectHideFlags: 0
@@ -6051,7 +6178,7 @@ GameObject:
   - component: {fileID: 1325837489}
   m_Layer: 8
   m_Name: Boundary (2)
-  m_TagString: Untagged
+  m_TagString: boundary
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6212,7 +6339,7 @@ GameObject:
   - component: {fileID: 1570786833}
   m_Layer: 8
   m_Name: Boundary
-  m_TagString: Untagged
+  m_TagString: boundary
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6473,6 +6600,7 @@ MonoBehaviour:
   spawnRate: 2
   spawnAmount: 1
   spawnDistance: 15
+  gameManager: {fileID: 98465908}
 --- !u!4 &1898626860
 Transform:
   m_ObjectHideFlags: 0

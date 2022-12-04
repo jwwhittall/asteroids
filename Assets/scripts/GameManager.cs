@@ -18,7 +18,11 @@ public class GameManager : MonoBehaviour
 
     public float respawnTime = 3.0f;
 
+    public float speed = 5.0f;
+
     public float respawnInvulnerabilityTime = 3.0f;
+
+    public float shieldTime = 5.0f;
 
     public int score = 0;
 
@@ -70,6 +74,18 @@ public class GameManager : MonoBehaviour
     private void TurnOnCollisions()
     {
         this.player.gameObject.layer = LayerMask.NameToLayer("player");
+    }
+
+    public void Shield()
+    {
+        this.player.gameObject.layer = LayerMask.NameToLayer("ignore collisions");
+        this.Invoke(nameof(TurnOnCollisions), this.shieldTime);
+    }
+
+    public void Slow()
+    {
+        Debug.Log("manager " + this.speed);
+        this.speed = 0;
     }
 
     private void GameOver()

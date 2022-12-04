@@ -12,6 +12,8 @@ public class asteroidSpawner : MonoBehaviour
 
     public float spawnDistance = 15.0f;
 
+    public GameManager gameManager;
+
     private void Start()
     {
         InvokeRepeating(nameof(Spawn), this.spawnRate, this.spawnRate);
@@ -29,6 +31,7 @@ public class asteroidSpawner : MonoBehaviour
             Quaternion rotation = Quaternion.AngleAxis(variance, Vector3.forward);
 
             asteroid asteroid = Instantiate(this.asteroidPrefab, spawnPoint, rotation);
+            asteroid.gameManager = this.gameManager;
             asteroid.size = Random.Range(asteroid.minSize, asteroid.maxSize);
             asteroid.SetTrajectory(rotation * -spawnDirection);
         }

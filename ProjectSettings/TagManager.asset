@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Bullet
   - Asteroid
+  - boundary
   layers:
   - Default
   - TransparentFX
@@ -17,8 +18,8 @@ TagManager:
   - asteroid
   - boundary
   - ignore collisions
-  - 
-  - 
+  - nuke
+  - powerup
   - 
   - 
   - 
