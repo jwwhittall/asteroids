@@ -3,11 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class startButton : MonoBehaviour
+public class controlsButton : MonoBehaviour
 {
     void OnMouseDown()
-    { 
-        SceneManager.LoadScene("controls");
-
+    {
+        SceneManager.LoadScene("Asteroids");
     }
 }

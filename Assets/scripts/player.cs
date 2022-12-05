@@ -14,9 +14,14 @@ public class player : MonoBehaviour
 
     private float _turnDirection;
 
+    public Sprite[] spriteArray;
+    public SpriteRenderer spriteRenderer;
+
     private void Awake()
     {
         _rigidbody = GetComponent<Rigidbody2D>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        spriteRenderer.sprite = spriteArray[0];
     }
 
     private void Update()

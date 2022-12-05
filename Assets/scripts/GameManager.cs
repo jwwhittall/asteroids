@@ -67,38 +67,35 @@ public class GameManager : MonoBehaviour
     {
         this.player.transform.position = Vector3.zero;
         this.player.gameObject.layer = LayerMask.NameToLayer("ignore collisions");
+        this.player.spriteRenderer.sprite = this.player.spriteArray[1];
         this.player.gameObject.SetActive(true);
         this.Invoke(nameof(TurnOnCollisions), this.respawnInvulnerabilityTime);
     }
 
     private void TurnOnCollisions()
     {
+        this.player.spriteRenderer.sprite = this.player.spriteArray[0];
         this.player.gameObject.layer = LayerMask.NameToLayer("player");
     }
 
     public void Shield()
     {
         this.player.gameObject.layer = LayerMask.NameToLayer("ignore collisions");
+        this.player.spriteRenderer.sprite = this.player.spriteArray[1];
         this.Invoke(nameof(TurnOnCollisions), this.shieldTime);
     }
-
+    /*
     public void Slow()
     {
         Debug.Log("manager " + this.speed);
         this.speed = 0;
     }
+    */
 
     private void GameOver()
     {
         this.restartButton.spriteRenderer.enabled = true;
         this.restartButton.rCollider.enabled = true;
-    }
-
-    public void Restart()
-    {
-        this.lives = 3;
-        this.score = 0;
-        this.Respawn();
     }
 
     private void Update()

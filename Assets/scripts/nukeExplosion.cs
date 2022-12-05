@@ -5,6 +5,7 @@ using UnityEngine;
 public class nukeExplosion : MonoBehaviour
 {
     public SpriteRenderer spriteRenderer;
+    public Animator controller;
 
     void Start()
     {
@@ -14,8 +15,10 @@ public class nukeExplosion : MonoBehaviour
 
     public void toggle()
     {
+       
         if (spriteRenderer.enabled == true)
         {
+            controller.Play("explosion", -1, 0.0f);
             spriteRenderer.enabled = false;
         }
         else if (spriteRenderer.enabled == false)

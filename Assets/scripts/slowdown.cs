@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class slowdown : MonoBehaviour
-{
+{/*
     public GameManager gameManager;
     private Rigidbody2D _rigidbody;
     public float speed = 50.0f;
@@ -29,4 +29,5 @@ public class slowdown : MonoBehaviour
 
         Destroy(this.gameObject, this.maxLifetime);
     }
+    */
 }
