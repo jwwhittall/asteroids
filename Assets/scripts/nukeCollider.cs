@@ -5,6 +5,8 @@ using UnityEngine;
 public class nukeCollider : MonoBehaviour
 {
     public BoxCollider2D nCollider;
+    public nukeExplosion explosionAni;
+
 
     void Awake()
     {
@@ -15,11 +17,13 @@ public class nukeCollider : MonoBehaviour
     public void nuke()
     {
         nCollider.enabled = true;
-        this.Invoke(nameof(nukeOff), 0.5f);
+        this.Invoke(nameof(nukeOff), 0.7f);
+        explosionAni.toggle();
     }
 
     public void nukeOff()
     {
         nCollider.enabled = false;
+        explosionAni.toggle();
     }
 }
