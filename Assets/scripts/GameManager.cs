@@ -26,6 +26,14 @@ public class GameManager : MonoBehaviour
 
     public int score = 0;
 
+    public bool bossSpawned = false;
+
+    public asteroidSpawner asteroidSpawner;
+    public powerupSpawner powerupSpawner;
+    //public bossAsteroidSpawner bossAsteroidSpawner;
+
+    public boss bossPrefab;
+
     public void AsteroidDestroyed(asteroid asteroid)
     {
         this.explosion.transform.position = asteroid.transform.position;
@@ -42,6 +50,14 @@ public class GameManager : MonoBehaviour
         else
         {
             this.score += 25;
+        }
+
+        if (this.score >= 3000 && bossSpawned == false)
+        {
+            bossSpawned = true;
+            asteroidSpawner.spawnAmount = 0;
+            powerupSpawner.spawnAmount = 0;
+            bossPrefab.bossStart();
         }
     }
 
@@ -84,19 +100,18 @@ public class GameManager : MonoBehaviour
         this.player.spriteRenderer.sprite = this.player.spriteArray[1];
         this.Invoke(nameof(TurnOnCollisions), this.shieldTime);
     }
-    /*
-    public void Slow()
-    {
-        Debug.Log("manager " + this.speed);
-        this.speed = 0;
-    }
-    */
 
     private void GameOver()
     {
         this.restartButton.spriteRenderer.enabled = true;
         this.restartButton.rCollider.enabled = true;
     }
+/*
+    public void Attack()
+    {
+        bossAsteroidSpawner.spawnAmount = 5;
+    }
+*/
 
     private void Update()
     {
@@ -105,6 +120,10 @@ public class GameManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             Application.Quit();
+        }
+        if (Input.GetKey(KeyCode.K))
+        {
+            score = 3000;
         }
     }
 
