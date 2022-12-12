@@ -6,17 +6,25 @@ public class bossAsteroidSpawner : MonoBehaviour
 {
     public bossAsteroid bossAsteroidPrefab;
 
-    public float trajectoryVariance = 15.0f;
+    public float trajectoryVariance = 1.0f;
 
-    public float spawnRate = 2.0f;
+    public float spawnRate = 0.1f;
 
-    public int spawnAmount = 0;
+    public int spawnAmount = 1;
 
-    public float spawnDistance = 5.0f;
+    public float spawnDistance = 1.0f;
 
     public GameManager gameManager;
 
-    private void Start()
+    public void Update()
+    {
+        if (Input.GetKey(KeyCode.R))
+        {
+            startAttack();
+        }
+    }
+
+    public void startAttack()
     {
         InvokeRepeating(nameof(Spawn), this.spawnRate, this.spawnRate);
     }

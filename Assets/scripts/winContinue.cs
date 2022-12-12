@@ -3,19 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class restart : MonoBehaviour
+public class winContinue : MonoBehaviour
 {
-    public Sprite[] spriteArray;
     public SpriteRenderer spriteRenderer;
     public BoxCollider2D rCollider;
 
     public GameManager gameManager;
 
-
     void Start()
     {
         spriteRenderer = this.GetComponent<SpriteRenderer>();
-        spriteRenderer.sprite = spriteArray[0];
         rCollider = this.GetComponent<BoxCollider2D>();
 
         this.spriteRenderer.enabled = false;
@@ -25,6 +22,5 @@ public class restart : MonoBehaviour
     void OnMouseDown()
     {
         SceneManager.LoadScene("Asteroids");
-        PlayerPrefs.DeleteAll();
     }
 }

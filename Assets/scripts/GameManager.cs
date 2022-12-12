@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour
     public Text livesText;
 
     public restart restartButton;
+    public winContinue continueButton;
 
     public int lives = 3;
 
@@ -26,13 +27,24 @@ public class GameManager : MonoBehaviour
 
     public int score = 0;
 
-    public bool bossSpawned = false;
+    public bool bossSpawned;
 
     public asteroidSpawner asteroidSpawner;
     public powerupSpawner powerupSpawner;
-    //public bossAsteroidSpawner bossAsteroidSpawner;
 
     public boss bossPrefab;
+
+    public confetti confettiPrefab;
+
+    public void Start()
+    {
+        if (PlayerPrefs.HasKey("score"))
+        {
+            this.score = PlayerPrefs.GetInt("score");
+            this.bossSpawned = true;
+        }
+        else bossSpawned = false;
+    }
 
     public void AsteroidDestroyed(asteroid asteroid)
     {
@@ -54,11 +66,17 @@ public class GameManager : MonoBehaviour
 
         if (this.score >= 3000 && bossSpawned == false)
         {
-            bossSpawned = true;
             asteroidSpawner.spawnAmount = 0;
             powerupSpawner.spawnAmount = 0;
-            bossPrefab.bossStart();
+            bossSpawned = true;
+            StartCoroutine(boss());
         }
+    }
+
+    IEnumerator boss()
+    {
+        yield return new WaitForSeconds(5);
+        bossPrefab.bossStart();
     }
 
     public void PlayerDied()
@@ -106,12 +124,7 @@ public class GameManager : MonoBehaviour
         this.restartButton.spriteRenderer.enabled = true;
         this.restartButton.rCollider.enabled = true;
     }
-/*
-    public void Attack()
-    {
-        bossAsteroidSpawner.spawnAmount = 5;
-    }
-*/
+
 
     private void Update()
     {
@@ -127,4 +140,18 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public void win()
+    {
+        Instantiate(this.confettiPrefab);
+        this.player.gameObject.layer = LayerMask.NameToLayer("ignore collisions");
+        PlayerPrefs.SetInt("score", this.score);
+        this.restartButton.spriteRenderer.enabled = true;
+        this.restartButton.rCollider.enabled = true;
+        this.continueButton.spriteRenderer.enabled = true;
+        this.continueButton.rCollider.enabled = true;
+        this.restartButton.spriteRenderer.sprite = this.restartButton.spriteArray[1];
+    }
+
 }
+
+
