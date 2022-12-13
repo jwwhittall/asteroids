@@ -123,6 +123,7 @@ public class GameManager : MonoBehaviour
     {
         this.restartButton.spriteRenderer.enabled = true;
         this.restartButton.rCollider.enabled = true;
+        this.restartButton.lAudio.Play();
     }
 
 
