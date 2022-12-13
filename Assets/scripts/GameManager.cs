@@ -149,6 +149,7 @@ public class GameManager : MonoBehaviour
         this.restartButton.rCollider.enabled = true;
         this.continueButton.spriteRenderer.enabled = true;
         this.continueButton.rCollider.enabled = true;
+        this.continueButton.wAudio.Play();
         this.restartButton.spriteRenderer.sprite = this.restartButton.spriteArray[1];
     }
 

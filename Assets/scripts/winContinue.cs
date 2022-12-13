@@ -7,6 +7,7 @@ public class winContinue : MonoBehaviour
 {
     public SpriteRenderer spriteRenderer;
     public BoxCollider2D rCollider;
+    public AudioSource wAudio;
 
     public GameManager gameManager;
 
@@ -14,6 +15,7 @@ public class winContinue : MonoBehaviour
     {
         spriteRenderer = this.GetComponent<SpriteRenderer>();
         rCollider = this.GetComponent<BoxCollider2D>();
+        wAudio = this.GetComponent<AudioSource>();
 
         this.spriteRenderer.enabled = false;
         this.rCollider.enabled = false;
