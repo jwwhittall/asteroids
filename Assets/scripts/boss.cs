@@ -14,12 +14,15 @@ public class boss : MonoBehaviour
 
     public SpriteRenderer spriteRenderer;
 
+    public tail tail;
+
     public void Start()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
         this.bCollider = GetComponent<BoxCollider2D>();
         bCollider.enabled = false;
         spriteRenderer.enabled = false;
+        tail.spriteRenderer.enabled = false;
     }
 
     public void bossStart()
@@ -27,6 +30,7 @@ public class boss : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
         this.bCollider = GetComponent<BoxCollider2D>();
         spriteRenderer.enabled = true;
+        tail.spriteRenderer.enabled = true;
         bCollider.enabled = true;
         this.Attack();
     }
