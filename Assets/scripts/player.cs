@@ -16,6 +16,8 @@ public class player : MonoBehaviour
 
     public Sprite[] spriteArray;
     public SpriteRenderer spriteRenderer;
+    public AudioClip laser;
+
 
     private void Awake()
     {
@@ -55,6 +57,7 @@ public class player : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space))
         {
             Shoot();
+            this.GetComponent<AudioSource>().PlayOneShot(this.laser, 1.0F);
         }
 
     }

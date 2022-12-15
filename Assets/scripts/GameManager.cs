@@ -33,11 +33,17 @@ public class GameManager : MonoBehaviour
     public powerupSpawner powerupSpawner;
 
     public boss bossPrefab;
+    public roar roarPrefab;
+    public death deathPrefab;
 
     public confetti confettiPrefab;
 
+    public AudioSource audioSource;
+    public AudioClip shield;
+
     public void Start()
     {
+        this.audioSource = GetComponent<AudioSource>();
         if (PlayerPrefs.HasKey("score"))
         {
             this.score = PlayerPrefs.GetInt("score");
@@ -50,6 +56,7 @@ public class GameManager : MonoBehaviour
     {
         this.explosion.transform.position = asteroid.transform.position;
         this.explosion.Play();
+        this.audioSource.Play();
 
         if (asteroid.size < 0.75f)
         {
@@ -77,6 +84,7 @@ public class GameManager : MonoBehaviour
     {
         yield return new WaitForSeconds(5);
         bossPrefab.bossStart();
+        Instantiate(this.roarPrefab);
     }
 
     public void PlayerDied()
@@ -117,6 +125,7 @@ public class GameManager : MonoBehaviour
         this.player.gameObject.layer = LayerMask.NameToLayer("ignore collisions");
         this.player.spriteRenderer.sprite = this.player.spriteArray[1];
         this.Invoke(nameof(TurnOnCollisions), this.shieldTime);
+        this.audioSource.PlayOneShot(this.shield, 1.0F);
     }
 
     private void GameOver()
@@ -143,9 +152,16 @@ public class GameManager : MonoBehaviour
 
     public void win()
     {
-        Instantiate(this.confettiPrefab);
         this.player.gameObject.layer = LayerMask.NameToLayer("ignore collisions");
         PlayerPrefs.SetInt("score", this.score);
+        Instantiate(this.deathPrefab);
+        StartCoroutine(winUI());
+    }
+
+    IEnumerator winUI()
+    {
+        yield return new WaitForSeconds(8);
+        Instantiate(this.confettiPrefab);
         this.restartButton.spriteRenderer.enabled = true;
         this.restartButton.rCollider.enabled = true;
         this.continueButton.spriteRenderer.enabled = true;

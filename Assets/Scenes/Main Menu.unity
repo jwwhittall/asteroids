@@ -308,7 +308,7 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 12800000, guid: 585188cdc4600544eb408bee749e4b3a, type: 3}
-    m_FontSize: 170
+    m_FontSize: 150
     m_FontStyle: 1
     m_BestFit: 0
     m_MinSize: 0
@@ -319,7 +319,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: ASTEROIDS!
+  m_Text: catsteroids!
 --- !u!222 &365404789
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -426,6 +426,10 @@ PrefabInstance:
     - target: {fileID: 2657267889671616872, guid: 6f5674329ad3d0d498da434a6fbf14ca, type: 3}
       propertyPath: fadeSpeed
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2657267889671616875, guid: 6f5674329ad3d0d498da434a6fbf14ca, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6f5674329ad3d0d498da434a6fbf14ca, type: 3}

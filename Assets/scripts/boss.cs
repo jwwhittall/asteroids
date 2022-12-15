@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class boss : MonoBehaviour
 {
-    public int hp = 20;
+    public int hp = 200;
 
     public bossAsteroidSpawner spawner;
 
@@ -29,10 +29,17 @@ public class boss : MonoBehaviour
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
         this.bCollider = GetComponent<BoxCollider2D>();
+        StartCoroutine(spawn());
+    }
+
+    IEnumerator spawn()
+    {
+        yield return new WaitForSeconds(2);
         spriteRenderer.enabled = true;
         tail.spriteRenderer.enabled = true;
         bCollider.enabled = true;
         this.Attack();
+
     }
 
     public void Attack()
